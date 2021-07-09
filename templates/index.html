@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock title %}
+{% block body %}
+
+
+<div class="container my-3">
+<form action="/" method="POST">
+
+  <div class="mb-3">
+    <label for="title" class="form-label">Product Title</label>
+    <input type="text" class="form-control", name="title" id="title" >
+  </div>
+
+  <div class="mb-3">
+    <label for="price" class="form-label">Product Price</label>
+    <input type="number" class="form-control" name="price" id="price">
+  </div>
+
+
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+</div>
+
+
+  <div class="container">
+
+          <h1> Products</h1>
+
+    {% if allProduct|length == 0 %}
+
+    <div class="alert alert-danger" role="alert">
+       No products available. Please add some product
+    </div>
+
+
+    {% else %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">S. No</th>
+          <th scope="col">Title</th>
+          <th scope="col">Price</th>
+          <th scope="col">Date</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+
+    <tbody>
+
+      {% for product in allProduct %}
+       <tr>
+          <th scope="row">{{loop.index}}</th>
+          <td>{{product.title}}</td>
+          <td>{{product.price}}</td>
+          <td>{{product.time}}</td>
+
+           <td> <a href="/update/{{product.id}}" type="button" class="btn btn-outline-dark btn-sm mx-2">Update</button> </a>
+           <td> <a href="/delete/{{product.id}}" type="button" class="btn btn-outline-dark btn-sm mx-2">Delete</button> </a>
+
+          </td>
+        </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+
+    {% endif %}
+
+  </div>
+
+{% endblock body %}

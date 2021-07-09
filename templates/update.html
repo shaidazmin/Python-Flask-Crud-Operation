@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %} Update {% endblock title %}
+{% block body %}
+
+
+<div class="container my-3">
+    <h2>Update Product</h2>
+<form action="/update/{{update_product.id}}" method="POST">
+
+  <div class="mb-3">
+    <label for="title" class="form-label">Product Title</label>
+    <input type="text" class="form-control", name="title" id="title"  value="{{update_product.title}}">
+  </div>
+
+  <div class="mb-3">
+    <label for="price" class="form-label">Product Price</label>
+    <input type="number" class="form-control" name="price" id="price"  value="{{update_product.price}}">
+  </div>
+
+
+
+  <button type="submit" class="btn btn-primary">Update</button>
+</form>
+
+
+</div>
+
+{% endblock body %}
